@@ -1,0 +1,84 @@
+#{{ ansible_managed }}
+# main firewall configfile.
+# all settings are on sane defaults. you *really* should know what you
+# do if you change them
+
+EXT_IF={{ firewall.ext_if | default ('eth0') }}
+INT_IF={{ firewall.int_if | default ('eth1') }}
+
+########################################################################################
+### IPv4 settings
+########################################################################################
+# set to 'true' if you want to enable ipv4 forwarden
+# if set to false this setting overwrites sysctl settings
+ipv4_forwarding={{ firewall.ipv4_forwarding | default ('false') }}
+
+# set to 'true' (default) if you want to drop and log invalid packages
+drop_invalid={{ firewall.drop_invalid | default ('true') }}
+
+# set to 'true' (default) if you want to drop broadcast and multicast
+drop_broadcast={{ firewall.drop_broadcast | default ('true') }}
+
+# set to 'true' (default) if you want the firewall to
+# detect portscans and drop+log them
+drop_portscan={{ firewall.drop_portscan | default ('true') }}
+
+# set to 'true' (default) if you want to allow ICMP redirects only from
+# our own gateway
+secure_redirects={{ firewall.secure_redirects | default ('true') }}
+
+# set to 'true' (default) if you want to block ICMP redirects
+block_redirects={{ firewall.block_redirects | default ('true') }}
+
+# set to 'true' (default) if you want to ignore broadcast/multicast ICMP
+# this prevents from smurf-attacks
+ignore_broadcast_icmp={{ firewall.ignore_broadcast_icmp | default ('true') }}
+
+# set to 'true' (default) if you want to ignore bogues error responses
+ignore_bogus_errors={{ firewall.ignore_bogus_errors | default ('true') }}
+
+# set to 'true' (default) if you want to block source route packages
+block_source_route_packages={{ firewall.block_source_route_packages | default ('true') }}
+
+# set to 'true' (default) if you dont want to proxy arp-packages
+block_proxy_arp={{ firewall.block_proxy_arp | default ('true') }}
+
+# set to 'true' (default) to enable syn-cookies.
+# this prevents from syn-flood-attacks
+enable_syn_cookies={{ firewall.enable_syn_cookies | default ('true') }}
+
+# set to 'true' (default) to enable reverse path filter (RFC1812)
+# prevents from spoofing attacks
+enable_reverse_path={{ firewall.enable_reverse_path | default ('true') }}
+
+# set to 'true' (default) to disable relaying of bootp
+disable_bootp_relay={{ firewall.disable_bootp_relay | default ('true') }}
+
+# set to 'true' (default) to disable logging of martian packages
+disable_martian_loging={{ firewall.disable_martian_loging | default ('true') }}
+
+# set to 'true' (default) to disable acceptance of source route packages
+disable_srr={{ firewall.disable_srr | default ('true') }}
+
+# set to 'true' (default) to enable SACK
+enable_sack={{ firewall.enable_sack | default ('true') }}
+
+# set to 'true' (default) to disable torrent
+deny_torrent={{ firewall.disable_torrent | default ('false') }}
+
+########################################################################################
+### IPv6 settings
+########################################################################################
+
+# set to 'true' (default) to allow ipv6 traffic on the loopback interface
+ipv6_loopback_ok={{ firewall.ipv6_loopback_ok | default ('true') }}
+
+# set to 'true' (default) to drop all other ipv6 traffic
+ipv6_drop_all={{ firewall.ipv6_drop_all | default ('true') }}
+
+# set to 'true' if you want to enable ipv6 forwarden
+# if set to false this setting overwrites sysctl settings
+ipv6_forwarding={{ firewall.ipv6_forwarding | default ('false') }}
+
+# set this to 'true' if you want to disable ipv6 at all
+ipv6_disabled={{ firewall.ipv6_disabled | default ('false') }}

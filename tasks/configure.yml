@@ -1,0 +1,32 @@
+---
+- name: Create directories for firewall
+  ansible.builtin.file: 
+    path: "{{ item }}"
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+  with_items:
+    - /etc/firewall
+
+- name: Copy firewall configuration file
+  ansible.builtin.template:
+    src: firewall.conf.j2
+    dest: /etc/firewall/firewall.conf
+    mode: '0640'
+    owner: root
+    group: root
+  notify:
+    - Enable firewall service
+    - Restart firewall service
+
+- name: Copy firewall script configuration file
+  ansible.builtin.copy:
+    src: firewall
+    dest: /etc/init.d/firewall
+    mode: '0755'
+    owner: root
+    group: root
+  notify:
+    - Enable firewall service
+    - Restart firewall service

@@ -1,0 +1,10 @@
+---
+- name: Copy ip-whitelist configuration file
+  ansible.builtin.template:
+    src: ip-whitelist.conf.j2
+    dest: /etc/firewall/ip-whitelist.conf
+    mode: '0640'
+    owner: root
+    group: root
+  notify:
+    - Restart firewall service

@@ -1,0 +1,41 @@
+---
+- name: Include ./configure.yml
+  ansible.builtin.import_tasks: configure.yml
+  tags:
+    - configure_firewall
+    - configure
+
+- name: Include ./services.yml
+  ansible.builtin.import_tasks: services.yml
+  when: firewall.services is defined
+  tags:
+    - configure_firewall_services
+    - configure_firewall
+
+- name: Include ./ip-whitelist.yml
+  ansible.builtin.import_tasks: ip-whitelist.yml
+  when: firewall.whitelist is defined
+  tags:
+    - configure_firewall_ip_whitelist
+    - configure_firewall
+
+- name: Include ./ip-blacklist.yml
+  ansible.builtin.import_tasks: ip-blacklist.yml
+  when: firewall.blacklist is defined
+  tags:
+    - configure_firewall_ip_blacklist
+    - configure_firewall
+
+- name: Include ./forwarding.yml
+  ansible.builtin.import_tasks: forwarding.yml
+  when: firewall.forwarding is defined
+  tags:
+    - configure_firewall_forwarding
+    - configure_firewall
+
+- name: Include ./custom-rules.yml
+  ansible.builtin.import_tasks: custom-rules.yml
+  when: firewall.custom_rules is defined
+  tags:
+    - configure_firewall_custom_rules
+    - configure_firewall

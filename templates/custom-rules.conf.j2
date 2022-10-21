@@ -1,0 +1,30 @@
+#{{ ansible_managed }}
+## ADD ALL CUSTOM RULES YOU WANT TO THE FIREWALL
+
+## SYNTAX:
+## LIKE GENERAL SYNTAX FOR IPTABLE RULE, 
+## BUT WITHOUT 'IPTABLE' AT THE BEGINNING OF A LINE
+
+## EXAMPLEs:
+
+## rule for accepting incoming connections via ECP protocol
+# -A INPUT -p esp -j ACCEPT
+
+## rule for limit connections via SSH with hitcount and seconds
+# -A INPUT -p tcp --dport 22 -m state --state NEW -m recent --update --seconds 60 --hitcount 5 -j DROP
+
+## rule for NAT iprange 
+# -t nat -A POSTROUTING -m iprange --src-range 10.0.0.2-10.0.0.50 -j SNAT --to-source EXT_IP
+## where EXT_IF - your external IP (like 1.1.1.1, or 8.8.8.8)
+
+########################################################################################
+
+{% if firewall.custom_rules is defined %}
+{% for k in firewall.custom_rules %}
+## {{ k.name }}
+{% for v in k.rule %}
+{{ v }}
+{% endfor %}
+
+{% endfor %}
+{% endif %}

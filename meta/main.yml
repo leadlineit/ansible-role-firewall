@@ -1,0 +1,18 @@
+---
+galaxy_info:
+  role_name: firewall
+  namespace: leadlineit
+  author: Stas Stavnichuk
+  description: Manage system firewall
+  license: BSD
+  min_ansible_version: '1.4'
+  platforms:
+    - name: Debian
+      versions:
+        - bullseye
+        - buster
+        - stretch
+  galaxy_tags:
+    - system
+    - debian
+    - firewall

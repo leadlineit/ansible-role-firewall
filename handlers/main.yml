@@ -1,0 +1,10 @@
+---
+- name: Enable firewall service
+  ansible.builtin.service:
+    name: firewall
+    enabled: true
+
+- name: Restart firewall service
+  ansible.builtin.service:
+    name: firewall
+    state: restarted

@@ -1,0 +1,10 @@
+---
+- name: Copy custom-rules configuration file
+  ansible.builtin.template:
+    src: custom-rules.conf.j2
+    dest: /etc/firewall/custom-rules.conf
+    mode: '0640'
+    owner: root
+    group: root
+  notify:
+    - Restart firewall service

@@ -1,0 +1,34 @@
+#{{ ansible_managed }}
+## ADD ALL PORTS YOU WANT TO FORWARD ON THE FIREWALL
+## ONLY ONE PORT PER LINE
+
+## SYNTAX:
+## PORT/PROTOCOL SOURCE EXT_IP LAN_IP PORT
+## where SOURCE is the source ip or network
+## if SOURCE is empty it defaults to 0.0.0.0/0 (which is any IP)
+## EXT_IP is ip on external interface
+## LAN_IP is ip in a local network 
+
+## EXAMPLEs:
+
+## forward ports for SSH from IP 1.1.1.1 on external interface to IP 192.168.0.1 and port 22 from anyware
+# 22/tcp 1.1.1.1 192.168.0.1 22
+# 22/udp 1.1.1.1 192.168.0.1 22
+
+## forward ports for MySQL from IP 1.1.1.1 on external interface to IP 192.168.0.1 and port 3306 from host 2.2.2.2
+# 3306/tcp 2.2.2.2 1.1.1.1 192.168.0.1 3306
+
+## forward ports for MySQL from IP 1.1.1.1 on external interface to IP 192.168.0.1 and port 3306 from host 2.2.2.2 and 3.3.3.3
+# 3306/tcp 2.2.2.2,3.3.3.3 1.1.1.1 192.168.0.1 3306
+
+########################################################################################
+
+{% if firewall.forwarding is defined %}
+{% for k in firewall.forwarding %}
+## {{ k.name }}
+{% for v in k.rule %}
+{{ v }}
+{% endfor %}
+
+{% endfor %}
+{% endif %}
