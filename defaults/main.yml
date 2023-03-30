@@ -46,7 +46,7 @@ firewall:
   forwarding:
     - name: rdp
       rule:
-        - 39929/tcp 51.75.43.24 10.7.0.5 3389
+        - 39929/tcp 51.75.43.24 10.0.0.5 3389
   custom_rules:
     - name: SSH-NEW-LIMIT
       rule:

@@ -8,7 +8,7 @@ This role helps to system firewall on a Debian (stretch/buster/bullseye).
 Requirements
 ------------
 
-This role requires Ansible 1.4 or higher.
+This role requires Ansible 2.9 or higher.
 
 Role Variables
 --------------
