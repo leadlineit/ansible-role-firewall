@@ -1,14 +1,21 @@
-# Ansible Role Firewall
+# Ansible Galaxy role for manage system firewall.
 
 ![Build Status](https://github.com/leadlineit/ansible-role-firewall/actions/workflows/ansible-galaxy-ci.yml/badge.svg)
 [![Galaxy Role](https://img.shields.io/badge/Ansible--Galaxy-leadlineit.firewall-blue.svg?logo=ansible&logoColor=white)](https://galaxy.ansible.com/leadlineit/firewall/)
 
-This role helps to system firewall on a Debian (stretch/buster/bullseye).
+This role helps to manage system firewall.
+
+Supported OSes
+--------------
+- Debian 12 (bookworm)
+- Debian 11 (bullseye)
+- Debian 10 (buster)
+- Debian 9 (stretch)
 
 Requirements
 ------------
 
-This role requires Ansible 2.9 or higher.
+This role requires Ansible 2.11 or higher.
 
 Role Variables
 --------------
